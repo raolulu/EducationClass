@@ -1,0 +1,13 @@
+{
+    "java.project.referencedLibraries": [
+        "lib/**/*.jar",
+        "d:\\Cworkspace\\testjava\\lib\\commons-beanutils.jar",
+        "d:\\Cworkspace\\testjava\\lib\\commons-collections-3.0.jar",
+        "d:\\Cworkspace\\testjava\\lib\\commons-lang-2.1.jar",
+        "d:\\Cworkspace\\testjava\\lib\\commons-logging.jar",
+        "d:\\Cworkspace\\testjava\\lib\\ezmorph-1.0.2.jar",
+        "d:\\Cworkspace\\testjava\\lib\\json-lib-1.1-jdk13.jar",
+        "d:\\Cworkspace\\testjava\\lib\\xom-1.0d10.jar",
+        "d:\\Cworkspace\\testjava\\lib\\gson-2.2.2.jar"
+    ]
+}
