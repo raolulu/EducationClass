@@ -15,15 +15,15 @@ import DataType.DataPackageType;
 import database.DataInfo;
 import database.SyncPackage;
 import database.UserInfo;
-import net.sf.json.JSONObject;
 
+import java.util.concurrent.ConcurrentHashMap;
 public class RequestTest{
     private InputStream suInput = null;
     private InputStream input = null;
     private DataInputStream dataRead = null;
     private byte[] buff;
     private DataInfo dataJson = null;
-    private JSONObject  jsonObject = null;
+    private ConcurrentHashMap<String,String> jsonObject = null;
     private Socket socket = null;
     private ResponseTest responseTest;
     private SyncPackage syncPackage = null;
@@ -166,12 +166,15 @@ public class RequestTest{
         String storagePath = null;
         String oldPath = null;
         if(type == DataPackageType.SUBMMIT_PICTURE_TYPE){
-            storagePath = "D:\\lulu\\" + userName + "\\unMarking\\"  + fileName;
+		//storagePath = "D:\\lulu\\" + userName + "\\unMarking\\"  + fileName;
+	    storagePath = "dirPath/" + userName + "/unMarking/"  + fileName;
         }
         if(type == DataPackageType.SUBMMIT_MARK_PICTURE_TYPE){
-            storagePath = "D:\\lulu\\" + userName + "\\Marking\\"  + fileName;
-            oldPath = "D:\\lulu\\" + userName + "\\unMarking\\"  + fileName;
-            File oldFile = new File(oldPath);
+            //storagePath = "D:\\lulu\\" + userName + "\\Marking\\"  + fileName;
+            //oldPath = "D:\\lulu\\" + userName + "\\unMarking\\"  + fileName;
+            storagePath = "dirPath/" + userName + "/Marking/"  + fileName;
+	    oldPath = "dirPath/" + userName + "/unMarking/"  + fileName;
+	    File oldFile = new File(oldPath);
             if(oldFile.exists()){
                 oldFile.delete();
             }
@@ -222,7 +225,7 @@ public class RequestTest{
 
     private boolean isLogon(String userGson){
         UserInfo userInfo = new Gson().fromJson(userGson, UserInfo.class);
-        if(jsonObject.has(userInfo.getUserName())){
+        if(jsonObject.containsKey(userInfo.getUserName())){
             //用户名已经存在
             return false; 
         }
@@ -262,8 +265,8 @@ public class RequestTest{
     }
    
     public boolean isLogin(String name,String passWd){
-        if(jsonObject.has(name)){
-            String gInfo = jsonObject.getString(name);
+        if(jsonObject.containsKey(name)){
+            String gInfo = jsonObject.get(name);
             UserInfo userInfo = (UserInfo) new Gson().fromJson(gInfo, UserInfo.class);
             if(userInfo.getPasswd().equals(passWd)){
                 UserInfo.setInstance(userInfo);

@@ -86,9 +86,11 @@ public class ResponseTest {
         String name = syncPackage.getName();
         String storagePathDir = null;
         if(syncPackage.getMark() == 0){
-            storagePathDir = "D:\\lulu\\" + name + "\\unMarking";
+            //storagePathDir = "D:\\lulu\\" + name + "\\unMarking";
+	    storagePathDir = "dirPath/" + name + "/unMarking";
         }else{
-            storagePathDir = "D:\\lulu\\" + name + "\\Marking";
+            //storagePathDir = "D:\\lulu\\" + name + "\\Marking";
+	    storagePathDir = "dirPath/" + name + "/Marking";
         }
         System.out.println("storagePathDir = " + storagePathDir);
         File dir = new File(storagePathDir);
