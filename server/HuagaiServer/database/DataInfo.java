@@ -3,16 +3,19 @@ package database;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 
 import com.google.gson.Gson;
 
-import net.sf.json.JSONObject;
+
+
+
 
 public class DataInfo {
-    private static JSONObject dataJson = null;
+    private static ConcurrentHashMap<String,String> dataJson = null;
     private static DataInfo mInstance = null;
     public DataInfo(){
-        dataJson = new JSONObject();
+        dataJson = new ConcurrentHashMap<>();
         UserInfo info = new UserInfo();
         info.setUserName("1111");
         info.setPasswd("1111");
@@ -60,16 +63,17 @@ public class DataInfo {
         }
         return mInstance;
     }
-    public JSONObject getDataJson() {
+    public ConcurrentHashMap<String,String> getDataJson() {
         return dataJson;
     }
-    public static void setDataJson(JSONObject dataJson) {
+    public static void setDataJson(ConcurrentHashMap<String,String> dataJson) {
         DataInfo.dataJson = dataJson;
     }
 
-    public void addInfo(String info, JSONObject jsonObject){
+    public void addInfo(String info, String jsonObject){
         dataJson.put(info, jsonObject);
     
     }
     
 }
+
